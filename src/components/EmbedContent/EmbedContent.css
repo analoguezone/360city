@@ -1,0 +1,32 @@
+.container {
+  //background-color: rgba(0,0,0,0.8);
+  //width: 90%;
+  max-width: 1024px;
+  color: white;
+  margin:65px auto;
+  min-height: 100px;
+  border-radius: 5px;
+  border:0;
+  align-items: center;
+  text-align: center;
+  padding:0;
+  overflow: hidden;
+
+
+}
+
+.container img{
+  max-width: 100%;
+  opacity:0.9;
+
+}
+
+.bigWhite{
+  background-color: white;
+  box-shadow: 7px 7px 7px  rgba(0,0,0,0.7);
+}
+
+.bigDark{
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 7px 7px 7px  rgba(0,0,0,0.7);
+}

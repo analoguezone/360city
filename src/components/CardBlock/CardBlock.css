@@ -1,0 +1,33 @@
+.addPadding {
+  
+
+}
+.embedContentHeader {
+
+  //margin:25px auto;
+  //min-width: 280px;
+  background-color:  rgba(114,171,2,0.5);
+  //display: inline-block;
+  color: #72AB02;
+  color: #eee;
+  padding:0 30px;
+  //border-radius: 5px;
+  margin:0;
+  margin-bottom:40px;
+
+
+}
+
+.embedContentHeader p {
+  font-size: 28px;
+  display:inline-block;
+  padding:8px;
+}
+
+.alink:hover {
+  color:#72AB02; 
+}
+
+.alink {
+  color:#ccc; 
+}
