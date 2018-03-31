@@ -9,7 +9,7 @@ const layout = (props) => {
   return (
     <Aux>
       <Background />
-      <NavBar /> 
+      <NavBar />
       <main className={classes.container} >
         {props.children}
       </main>
