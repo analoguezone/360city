@@ -13,7 +13,7 @@ const layout = (props) => {
       <main className={classes.container} >
         {props.children}
       </main>
-      <p>Footer Content</p>
+ 
     </Aux>
   )
 }

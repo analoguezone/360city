@@ -64,13 +64,13 @@ export class footerControl extends Component {
               backgroundColor: "rgba(0,0,0," + this.state.opacity + ")",
               height: "100%",
               position: "fixed",
-              top: this.state.fixedPosition- ((this.state.windowHeight+200)/2) + "px",
+              top: this.state.fixedPosition- ((this.state.windowHeight)/2) + "px",
               zIndex: "-1"
             }}
           > 
-          <div style={{ width: "100%", backgroundColor: "rgba(0,0,0," + this.state.opacity + ")", paddingTop:"200px"}}>
+          
             {this.props.children}
-          </div>  
+    
           </div>
           <div
             ref={element => (this.watchDiv = element)}
