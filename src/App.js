@@ -21,11 +21,13 @@ import TwoRowCardBlock, {
   FourRowCardBlock
 } from "./components/CardBlock/twoRowCardBlock";
 import FooterControl from "./hoc/FooterControl/FooterControl";
+import ImageMotion from "./hoc/ImageMotion/ImageMotion";
+import ImagePortraitTransform from "./hoc/ImagePortraitTransform/ImagePortraitTransform"
+
 
 class App extends Component {
   state = {
     opacity: 1,
-    footerOpacityCalc: 1.01,
     calculations: {
       direction: "none",
       height: 0,
@@ -56,6 +58,7 @@ class App extends Component {
   handleOnPassed = (e, { passed }) => {
     this.setState({ passed });
     this.setState({ opacity: 0.001 });
+    
   };
 
   // <div style={{position: 'fixed',color:'white', top:'500px' }} ><h1> Percent Passed: {calculations.percentagePassed.toFixed(2)} opacity: {this.state.opacity.toFixed(2)} onPassed: {this.state.bottomPassed} </h1></div>
@@ -71,9 +74,11 @@ class App extends Component {
         <EmbedContent fixed="fixed" onTop="onTop">
           <Transition animation="drop" duration={1500}>
             <img
-              style={{ opacity: this.state.opacity }}
+              style={{ opacity: this.state.opacity}}
               src={openingScreen}
               alt="Benefi your bussines"
+             
+
             />
           </Transition>
         </EmbedContent>
@@ -88,25 +93,33 @@ class App extends Component {
 
         <EmbedContent background="bigDark">
           <VisibilityControl>
-            <img src={third} alt="Benefit your bussines" />
+            <ImageMotion>
+              <img src={third} alt="Benefit your bussines" />
+            </ImageMotion>
           </VisibilityControl>
         </EmbedContent>
 
         <EmbedContent background="bigDark">
           <VisibilityControl>
+          <ImageMotion>
             <img src={second} alt="Your customers will see" />
+            </ImageMotion>
           </VisibilityControl>
         </EmbedContent>
 
         <EmbedContent background="">
           <VisibilityControl>
+          <ImageMotion>
             <img src={sixth} alt="Benefi your bussines" />
+            </ImageMotion>
           </VisibilityControl>
         </EmbedContent>
 
         <EmbedContent background="bigDark">
           <VisibilityControl>
+          <ImageMotion>
             <img src={seventh} alt="Benefi your bussines" />
+            </ImageMotion>
           </VisibilityControl>
         </EmbedContent>
 
@@ -115,9 +128,10 @@ class App extends Component {
         <TwoRowCardBlock header="Tours" align="center" />
 
         <FooterControl>
-        
-          <img style={{ width: "100%" }} src={footer} alt="VR 360 LLC." />
-        
+       
+        <img style={{width: "100%"}} src={footer} alt="VR 360 LLC." />
+   
+          
         </FooterControl>
       </Layout>
     );
