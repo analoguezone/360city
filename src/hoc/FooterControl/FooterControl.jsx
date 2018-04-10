@@ -59,7 +59,7 @@ export class footerControl extends Component {
           style={{
             transform:
               "translate(0, " +
-              -(this.state.opacity * (this.state.windowHeight / 2)) +
+              -(this.state.opacity * (this.state.windowHeight / 1.88)) +
               "px)",
             opacity: this.state.opacity,
             backgroundColor: "rgba(0,0,0," + this.state.opacity + ")",
@@ -76,14 +76,14 @@ export class footerControl extends Component {
               padding: "0px, 0"
             }}
           >
-            {this.props.children}
+       {this.props.children}     
           </div>
         </div>
         {/* placeholder element a footer meretaranyahoz kepest kell beallitani */}
         <div
           ref={element => (this.watchDiv = element)}
           style={{
-            paddingTop: window.innerHeight*0.8 + "px",
+            paddingTop: window.innerHeight*0.9 + "px",
             zIndex: "-1"
           }}
         />

@@ -28,9 +28,13 @@
   
 }
 
+a {
+  text-decoration: none;
+}
+
 .blockingLayer {
   position: relative;
-  height:380px !important;
+  height:340px !important;
 
   margin:0;
   border:none;

@@ -2,23 +2,30 @@ import React, { Component } from "react";
 import classes from "./ImageMotion.css";
 
 export class imageMotion extends Component {
-  state = {
-    windowHeight: 0,
-    windowWidth: 0,
-    imageCenter: 0,
-    canvasHeight: 0,
-    canvasWidth: 0,
-    motionGamma: 100,
-    toggleZoom: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      windowHeight: 0,
+      windowWidth: 0,
+      imageCenter: 0,
+      canvasHeight: 0,
+      canvasWidth: 0,
+      motionGamma: 0,
+      toggleZoom: this.props.forceZoom
+    };
+  }
 
   componentDidMount() {
     this.updateCanvas();
-    window.addEventListener("deviceorientation", this.onTilt, false);
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", this.onTilt, false);
+    }
+    window.addEventListener("resize", this.updateCanvas, false);
   }
 
   componentWillUnmount = () => {
     window.removeEventListener("deviceorientation", this.onTilt);
+    window.removeEventListener("resize", this.updateCanvas);
   };
 
   componentWillUpdate() {
@@ -29,7 +36,13 @@ export class imageMotion extends Component {
   }
 
   onTilt = motion => {
+ 
+    if (this.props.noMotion) {
+      return;
+    }
+
     let tiltAmount = 0;
+    
 
     //dolesszog szerinti pozicionalas a kepen, a kilogo szelek mertekeig -50 pixel
 
@@ -44,7 +57,10 @@ export class imageMotion extends Component {
       return {
         motionGamma: tiltAmount.toFixed(1),
         windowHeight: prevState.windowHeight,
-        fixedPosition: prevState.fixedPosition
+        windowWidth: prevState.windowWidth,
+        imageCenter: prevState.imageCenter,
+        canvasHeight: prevState.canvasHeight,
+        canvasWidth: prevState.canvasWidth
       };
     });
   };
@@ -52,12 +68,17 @@ export class imageMotion extends Component {
   // kep inicializalas 80%-os magassagra a keparany megtartasa mellet
 
   updateCanvas = () => {
+    if (window.innerWidth == this.state.windowWidth) {
+      return;
+    }
+
     let canvasHeight = window.innerHeight * 0.8;
     let canvasWidth = canvasHeight * 1.77;
     let imageCenter = (window.innerWidth - canvasWidth) / 2;
 
     this.setState(prevState => {
       return {
+        motionGamma: prevState.motionGamma,
         windowHeight: window.innerHeight,
         windowWidth: window.innerWidth,
         imageCenter: imageCenter,
@@ -67,22 +88,23 @@ export class imageMotion extends Component {
     });
   };
 
+
   toggleZoom = () => {
+    if (this.props.forceZoom) {
+      return;
+    }
     this.setState({ toggleZoom: !this.state.toggleZoom });
   };
 
   render() {
     // a kep canvas beallitasa a rotaion sensor eseten mindig a megfelelo meretre
     // a keparany mellet ami ebben az esetben 1920*1080
-
+    
     let motionCanvas = <div>{this.props.children}</div>;
 
     //ha portrait nezetben van, es be van kapcsolva a zoom, akkor indul a motion canvas
 
-    if (
-      window.innerWidth / window.innerHeight < 1 &&
-      this.state.toggleZoom
-    ) {
+    if (window.innerWidth / window.innerHeight < 1 && this.state.toggleZoom) {
       motionCanvas = (
         <div
           className={classes.container}

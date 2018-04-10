@@ -9,7 +9,7 @@ const cardFactory = props => {
     <Aux>
       <Card
         href={props.redirectUrl}
-        className={[classes.container, classes.blackBorder]}
+        className={[classes.container, classes.blackBorder].join(" ")}
         alt={props.title}
       >
       <VisibilityControl animationType='browse'  animationDuration='1000' >    
