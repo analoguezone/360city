@@ -4,7 +4,8 @@ import Aux from "../Aux/Aux";
 export class footerControl extends Component {
   state = {
     opacity: 0.01,
-    windowHeight: ""
+    windowHeight: "",
+    windowWidth:0
   };
 
   componentDidMount = () => {
@@ -53,12 +54,23 @@ export class footerControl extends Component {
   };
 
   render() {
+    if (this.props.xOffset!==this.state.xOffset){
+      this.setState(prevState => {
+        return {
+          xOffset: this.props.xOffset
+        };
+      });
+    }
+   
+
+   
+
     return (
       <Aux>
         <div
           style={{
             transform:
-              "translate(0, " +
+              "translate("+this.props.xOffset+"px, " +
               -(this.state.opacity * (this.state.windowHeight / 1.88)) +
               "px)",
             opacity: this.state.opacity,

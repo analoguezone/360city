@@ -6,7 +6,7 @@
   border:0;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+ // overflow: hidden;
   margin-top: 150px;
 
 }
@@ -77,3 +77,8 @@
   
 }
 
+@media (min-width : 1600px) {
+  img {
+    max-width: 1600px;
+  }
+}

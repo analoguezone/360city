@@ -25,6 +25,7 @@ import {Helmet} from "react-helmet";
 class App extends Component {
   state = {
     opacity: 1,
+    xOffset:0,
     calculations: {
       direction: "none",
       height: 0,
@@ -38,7 +39,8 @@ class App extends Component {
       fits: false,
       passing: false,
       onScreen: false,
-      offScreen: false
+      offScreen: false,
+
     }
   };
 
@@ -61,6 +63,18 @@ class App extends Component {
   render() {
     configureAnchors({ offset: -20, scrollDuration: 1000 });
 
+    if (window.innerWidth >1600 ) {
+      this.setState(prevState => {
+        if (prevState.windowWidth!==window.innerWidth) {
+          return {
+            windowWidth:window.innerWidth,
+            xOffset: (window.innerWidth-1615)/2
+          };
+        }
+       
+      });
+    }
+
     return (
 
       <Layout>
@@ -75,11 +89,15 @@ class App extends Component {
           <div />
         </ScrollableAnchor>
 
-        <EmbedContent fixed="fixed" onTop="onTop">
+        <EmbedContent fixed="fixed" onTop="onTop" xOffset={this.state.xOffset}>
           <Transition animation="drop" duration={1500}>
             <ImageMotion forceZoom noMotion>
               <img
-                style={{ opacity: this.state.opacity }}
+                
+                style={{ opacity: this.state.opacity,
+                  transform:
+                  "translate("+this.state.xOffset+"px, 0px)"
+                 }}
                 src={openingScreen}
                 alt="Benefi your bussines"
               />
@@ -133,9 +151,9 @@ class App extends Component {
         <ScrollableAnchor id="Contact">
           <div />
         </ScrollableAnchor>
-        <FooterControl>
+        <FooterControl xOffset={this.state.xOffset}>
           <ImageMotion forceZoom noMotion>
-            <img style={{ width: "100%" }} src={footer} alt="VR 360 LLC." />
+            <img  src={footer} alt="VR 360 LLC." />
           </ImageMotion>
         </FooterControl>
       </Layout>

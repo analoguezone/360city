@@ -100,7 +100,7 @@ export class imageMotion extends Component {
     // a kep canvas beallitasa a rotaion sensor eseten mindig a megfelelo meretre
     // a keparany mellet ami ebben az esetben 1920*1080
     
-    let motionCanvas = <div>{this.props.children}</div>;
+    let motionCanvas = <div className={classes.container}>{this.props.children}</div>;
 
     //ha portrait nezetben van, es be van kapcsolva a zoom, akkor indul a motion canvas
 
